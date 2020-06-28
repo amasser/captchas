@@ -7,6 +7,7 @@ package drivers
 import (
 	"image/color"
 
+	"clevergo.tech/captchas"
 	"github.com/mojocn/base64Captcha"
 )
 
@@ -63,6 +64,8 @@ type Math struct {
 	fonts   []string
 }
 
+var _ captchas.Driver = NewMath()
+
 // NewMath return a math driver.
 func NewMath(opts ...MathOption) *Math {
 	d := &Math{
@@ -70,6 +73,7 @@ func NewMath(opts ...MathOption) *Math {
 		height:     80,
 		width:      220,
 		noiseCount: 0,
+		fonts:      []string{"wqy-microhei.ttc"},
 	}
 
 	for _, f := range opts {
